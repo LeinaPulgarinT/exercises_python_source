@@ -13,11 +13,15 @@ def stack(name_stack, element):
 
 # Desapilar un elemento:
 def unstack(name_stack):
-    return name_stack.pop()
+    if len(name_stack) == 0:
+        return 'No es posible desapilar un elemento, la pila esta vacia'
+    else:
+        return name_stack.pop()
+#print(unstack(b))
 
 # Tamaño pila:
 def size_stack(name_stack):
-    return f'El tamaño de la pila es: {len(name_stack)}'
+    return len(name_stack)
 
 # Es vacía:
 def isempty(name_stack):
@@ -28,8 +32,11 @@ def isempty(name_stack):
 
 # Recuperar el top de la pila:
 def top_stack(name_stack):
-    top = unstack(name_stack)
-    stack(name_stack, top)
-    return top
+    if not isempty(name_stack):
+        top = unstack(name_stack)
+        stack(name_stack, top)
+        return top
+    else:
+        return 'Pila vacia'
 #print(top_stack(b))
 #print(b)
