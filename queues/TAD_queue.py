@@ -11,17 +11,21 @@ def add_queue(queue, element):
     queue.append(element)
     return queue
 
+b = create_queue()
 # Retirar un elemento de la cola:
 def remove_element_queue(queue):
-    queue.popleft()
-    return queue
-#print(remove_element_queue(a))
+    if len(queue) == 0:
+        return 'La cola esta vacia'
+    else:
+        return queue.popleft()
+#print(remove_element_queue(b))
 
 # Tamaño de la cola
 def size_queue(queue):
     return len(queue)
-#b = create_queue()
-#print(size_queue(b))
+#print(size_queue(b)
+
+
 
 # Es vacia:
 def isempty_queue(queue):
@@ -33,19 +37,22 @@ def isempty_queue(queue):
 
 # Recuperar el frente de la cola:
 def front_queue(queue):
-    front = remove_element_queue(queue)
-    queue_aux = create_queue()
-    add_queue(queue_aux, front)
-    while not isempty_queue(queue):
-        front_aux = remove_element_queue(queue)
-        add_queue(queue_aux, front_aux)
-    queue_aux_two = create_queue()
-    while not isempty_queue(queue_aux):
-        front_aux_two = remove_element_queue(queue_aux)
-        add_queue(queue, front_aux_two)
-    return front
-#print(front_queue(a))
-#print(a)
+    if not isempty_queue(queue):
+        front = remove_element_queue(queue)
+        queue_aux = create_queue()
+        add_queue(queue_aux, front)
+        while not isempty_queue(queue):
+            front_aux = remove_element_queue(queue)
+            add_queue(queue_aux, front_aux)
+        while not isempty_queue(queue_aux):
+            front_aux_two = remove_element_queue(queue_aux)
+            add_queue(queue, front_aux_two)
+        return front
+    else:
+        return 'La cola esta vacia'
+print(front_queue(a))
+# Verifico que la cola me haya quedado igual
+print(a)
 
 
 
