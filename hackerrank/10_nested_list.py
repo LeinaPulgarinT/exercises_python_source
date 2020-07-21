@@ -1,3 +1,4 @@
+# falta terminarlo: 
 n = int(input('Ingrese el numero de estudiantes: '))
 if n >= 2 and n <= 5:
     main_list = []
