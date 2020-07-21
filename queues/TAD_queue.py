@@ -1,7 +1,7 @@
 from collections import deque 
 a = deque([1, 4, 8, 12])
 
-# Crear una cola sin la libreria:
+# Crear una cola:
 def create_queue():
     queue = deque()
     return queue
@@ -50,9 +50,9 @@ def front_queue(queue):
         return front
     else:
         return 'La cola esta vacia'
-print(front_queue(a))
+#print(front_queue(a))
 # Verifico que la cola me haya quedado igual
-print(a)
+#print(a)
 
 
 
