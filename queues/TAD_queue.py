@@ -12,6 +12,7 @@ def add_queue(queue, element):
     return queue
 
 b = create_queue()
+
 # Retirar un elemento de la cola:
 def remove_element_queue(queue):
     if len(queue) == 0:
