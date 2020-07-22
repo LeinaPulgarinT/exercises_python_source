@@ -4,7 +4,9 @@ from TAD_queue import remove_element_queue
 from TAD_queue import size_queue
 from TAD_queue import add_queue
 from copy_queue import copy_queue
+# Cola para hacer las pruebas:
 c = deque([1, 3, 4, 7])
+# Algoritmo que me busca un elemento en una cola:
 def search_queue(queue, element_search):
     queue_aux = deque()
     while size_queue(queue) != 0:
