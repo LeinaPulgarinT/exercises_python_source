@@ -18,10 +18,10 @@ for i in range(A):
 
 
 # Organizo la matriz:  
-for fila in x:
+for row in x:
     print('[', end=' ')
-    for elemento in fila:
-        print('{:4}'.format(elemento), end="   ") 
+    for element in row:
+        print('{:4}'.format(element), end="   ") 
     print(']')
     print()
     print()
@@ -35,4 +35,4 @@ for i in range(len(x[0])):
     transposed_matrix.append([])
     for j in range(len(x)):
         transposed_matrix[i].append(x[j][i])
-print(lista)
+print(transposed_matrix)

@@ -23,27 +23,28 @@ print()
 
 # Eliminar una fila: 
 X = int(input('Ingrese el número de la fila que desea eliminar, tenga en cuanta que las filas empiezan desde Cero.'))
-sumatoria = []
+matrix_aux = []
 for i in range(len(matrix)):
     if matrix[X] == matrix[i]:
         continue
     else:
-        sumatoria.append(matrix[i])
-matrix = sumatoria
-#print(matrix)
+        matrix_aux.append(matrix[i])
+matrix = matrix_aux
+print(matrix)
 
 # Eliminar una columna: 
 Y = int(input('Ingrese el número de la columna que desea eliminar, tenga en cuanta que las filas empiezan desde Cero. '))
 #Y += 1
-sumatoria = []
+matrix_aux = []
 for i in range(len(matrix)):
-    sumatoria.append([])
+    matrix_aux.append([])
     for j in range(len(matrix[0])):
         if matrix[i][Y] == matrix[i][j]:
             continue
         else:
-            sumatoria[i].append(matrix[i][j])
-matrix = sumatoria
+            matrix_aux[i].append(matrix[i][j])
+matrix = matrix_aux
+
 for row in matrix:
     print('[', end=' ')
     for element in row:

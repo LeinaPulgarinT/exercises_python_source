@@ -6,19 +6,19 @@ M = int(input("Ingrese el número de filas: "))
 N = int(input("Ingrese el número de columnas: "))
 K = int(input("Ingrese un número, para multiplicarlo por cada uno de los elementos de la matriz: "))
 
-matriz = []
+matrix = []
 
 
 for i in range(M):
-    matriz.append([])
+    matrix.append([])
     for j in range(N):
-       valor = int(input(f'ingrese en la fila {i}, la columna {j}: ')) 
-       matriz[i].append(valor * K)
+       value = int(input(f'ingrese en la fila {i}, la columna {j}: ')) 
+       matrix[i].append(value * K)
 
 print()
-for fila in matriz:
+for row in matrix:
     print('[', end=' ')
-    for elemento in fila:
-        print('{:4}'.format(elemento), end="   ") 
+    for element in row:
+        print('{:4}'.format(element), end="   ") 
     print(']')
 print()

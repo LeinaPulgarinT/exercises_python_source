@@ -14,10 +14,10 @@ matrix[0][1] = 1
 
 print()
 
-for fila in matrix:
+for row in matrix:
     print('[', end=' ')
-    for elemento in fila:
-        print('{:4}'.format(elemento), end="   ") 
+    for element in row:
+        print('{:4}'.format(element), end="   ") 
     print(']')
 print()
 

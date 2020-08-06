@@ -9,10 +9,10 @@ for i in range(M):
 print()
 print()
 
-for fila in matrix:
+for row in matrix:
     print('[', end=' ')
-    for elemento in fila:
-        print('{:4}'.format(elemento), end="   ") 
+    for element in row:
+        print('{:4}'.format(element), end="   ") 
     print(']')
 print()
 
@@ -27,25 +27,25 @@ else:
     print('No es matriz')
 
 # Determinar el promedio por fila:
-suma = 0
+sum = 0
 count = 0
-lista = []
+mean_row = []
 for i in range(M):
     for j in range(N):
-        suma = suma + matrix[i][j]
-    promedio = suma / (len(matrix[i]))
-    lista.append(promedio)
-    suma = 0
-print(f"los promedios por fila son los siguientes: \n{lista}")
+        sum = sum + matrix[i][j]
+    mean = sum / (len(matrix[i]))
+    mean_row.append(mean)
+    sum = 0
+print(f"los promedios por fila son los siguientes: \n{mean_row}")
 
 #Determinar el promedio por columna:
 add_col = 0
 count_col = 0
-list_count = []
+mean_col = []
 for i in range(N):
     for j in range(M):
         add_col = add_col + matrix[j][i]
-    mean_col = add_col / (len(matrix[j]))
-    list_count.append(mean_col)
+    mean = add_col / (len(matrix[j]))
+    mean_col.append(mean)
     add_col = 0
-print(f"los promedios por columna son los siguientes: \n{list_count}")
+print(f"los promedios por columna son los siguientes: \n{mean_col}")
