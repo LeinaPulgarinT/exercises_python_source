@@ -9,9 +9,9 @@ K = int(input("Ingrese un número, para multiplicarlo por cada uno de los elemen
 # Una forma de hacerlo
 rows = [[] for i in range(M)] 
 matrix = [[j*K for j in range(N)] for i in rows]
-print()
+print(matrix)
 
 # Una forma de hacerlo:
-matri_two =[[i*K for i in range(N)] for num in 
+matrix_two =[[i*K for i in range(N)] for num in 
 [num for num in range(M)]] 
-print(matriz_two)
+print(matrix_two)

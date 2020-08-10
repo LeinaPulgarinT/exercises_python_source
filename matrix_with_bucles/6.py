@@ -61,7 +61,6 @@ if len(matrix_one) == len(matrix_two) and len(matrix_one[0]) == len(matrix_two[0
         for j in range(len(matrix_one[0])):
             sum = matrix_one[i][j] + matrix_two[i][j]
             matrix_resulting_sum[i].append(sum)
-            #sum = 0
     print(matrix_resulting_sum)
 else:
     print('No se pueden sumar las matrices')

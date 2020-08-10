@@ -8,9 +8,5 @@ matrix = [[j+1 for j in range(B)]
 print(matrix)
 
 # Transpuesta de una matriz:
-transposed = [[j[i] for j in matrix] for i in range(A)]
+transposed = [[j[i] for j in matrix] for i in range(B)]
 print(transposed)
-
-
-
-

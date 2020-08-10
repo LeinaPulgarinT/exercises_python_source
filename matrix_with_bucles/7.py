@@ -73,6 +73,23 @@ for i in range(len(matrix)):
 for row in matrix:
     print('[', end=' ')
     for element in row:
-        print('{:4}'.format(element), end="   ") 
+        print('{:4}'.format(element), end="   ")
     print(']')
     print()
+
+# Insertar columna:
+new_col = []
+for i in range(len(matrix)):
+    element = int(input('Ingrese un numero: '))
+    new_col.append(element)
+print(new_col)
+
+B = int(input(f'Ingrese la posición de la columna que quiere cambiar, \
+tenga encuenta que: posiciones >= 0 y < {N}: '))
+for i in range(len(matrix)):
+    for j in range(len(matrix[0])):
+        if matrix[i][B] == matrix[i][j]:
+            continue
+        else:
+            matrix[i][B] = new_col[i]
+print(matrix)

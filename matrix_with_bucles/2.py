@@ -59,12 +59,12 @@ print(upper_triang)
 # Algoritmo para sacar la matriz triangular inferior:
 count_four = 0
 lower_triang = []
-aumentar2 = matrix_zero[count_four][count_four:count_four+1]
+increase_two = matrix_zero[count_four][count_four:count_four+1]
 for i in range(col_and_row):
     if count_four < i :
-        lower_triang.append(aumentar2)
+        lower_triang.append(increase_two)
         count_four = count_four + 1
-        aumentar2 = matrix_zero[count_four][0:count_four+1]
+        increase_two = matrix_zero[count_four][0:count_four+1]
 if count_four == i:
     lower_triang.append(matrix_zero[i])
 print(lower_triang)
