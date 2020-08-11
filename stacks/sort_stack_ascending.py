@@ -39,5 +39,10 @@ def ascending_sort(stack_input):
         insert(element, stack_out, stack_aux)
     copy_stack(stack_aux_two, stack_input)
     return stack_out
+print('Pila ordenada: ')
+print()
 print(ascending_sort(c))
+print()
+print('Pila original')
+print()
 print(c)
