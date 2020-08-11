@@ -1,4 +1,5 @@
 
+"""
 M = int(input("Ingrese el número de filas de la primera matriz: "))
 N = int(input("Ingrese el número de columnas de la primera matriz: "))
 
@@ -10,13 +11,14 @@ A = int(input("Ingrese el número de filas de la segunda matriz: "))
 B = int(input("Ingrese el número de columnas de la segunda matriz: "))
 matrix_two = [[int(input('Valor: ')) for j in range(B)] 
 for i in range(A)]
+"""
+# Matrices para pruebas de la funcion suma
+matrix_one = [[6,2,7,5],[9,7,7,1],[3,1,6,2]]
+matrix_two = [[2,4,5,4],[5,4,2,5],[7,1,1,2]]
 
-#matrix_one = [[6,2,7,5],[9,7,7,1],[3,1,6,2]]
-#matrix_two = [[2,4,5,4],[5,4,2,5],[7,1,1,2]]
-#matrix_two = [[2,4,5],[5,4,2],[7,1,1],[2,4,5]]
-
-#matrix_one = [[1,2,3], [4,5,6]]
-#matrix_two = [[1,2], [3,4], [5,6]]
+# Matrices para pruba de la funcion multiplicar:
+matrix_one = [[1,2,3], [4,5,6]]
+matrix_two = [[1,2], [3,4], [5,6]]
 
 # Algoritmo para sumar dos matrices:
 if len(matrix_one) == len(matrix_two) and \
