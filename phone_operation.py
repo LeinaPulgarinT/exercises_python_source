@@ -3,21 +3,19 @@ from datetime import date, datetime
 from operator import itemgetter, attrgetter
 
 class Contact:
-    def __init__(self, id, name, lastname, age, number, email, creation_date):
+    def __init__(self, id, name, lastname, age, number, email):
         self.id = id
         self.name = name
         self.lastname = lastname
         self.age = age
         self.number = number
         self.email = email
-        self.creation_date = creation_date
-        print(f'Se ha creado un nuevo contacto con el nombre {self.name}')
+        self.creation_date = datetime.now()
+        print(f"A new contact has been created with the name {self.name}")
 
     def __str__(self):
-        return f'''{self.creation_date}, {self.name}, {self.lastname}, \
-            {self.age}, {self.number}, {self.email}, {self.id} \n '''
-
-
+        return f'''\nDocument: {self.id}\nName: {self.name}\nLastname: {self.lastname}
+        Age: {self.age}\nCellphone: {self.number}\nEmail: {self.email}\nCreation date: {self.creation_date}\n'''
 class Phone():
 
     contacts = []
@@ -28,9 +26,9 @@ class Phone():
         contact_list.seek(0)
         try:
             self.contacts = pickle.load(contact_list)
-            print(f'Se cargaron {len(self.contacts)} contactos')
+            print(f'{len(self.contacts)} contact were loaded')
         except:
-            print('No hay contactos')
+            print("There aren't contacts")
         finally:
             contact_list.close()
             del(contact_list)
@@ -38,12 +36,12 @@ class Phone():
     def create_contact(self, new_contact):
         """Create contact and save it."""
         self.contacts.append(new_contact)
-        print(f'¿Deseas agregar {new_contact.name} a lista de contactos?')
-        res = int(input('ingresa 1 para agregarlo o 2 para no agregarlo: '))
+        print(f'Do you want to add {new_contact.name}to contacts list?')
+        res = int(input('Enter 1 to add it or 2 to not add it: '))
         if res == 1:
             self.save_contact_at_archive()
             print(f"""
-            {new_contact.name} ha sido agregador(a) a tu lista de contactos
+            {new_contact.name} has been added to your contact list
             """)
     
     def save_contact_at_archive(self):
@@ -56,6 +54,18 @@ class Phone():
         del(contact_list)
         del(order)
 
+    def contact_check(self, name):
+        archive = open('contacts_file', 'rb')
+        my_contacts = pickle.load(archive)
+        for i in my_contacts:
+            if i.name == name:
+                return  True
+        else: 
+            return False
+        archive.close()
+        del(archive)
+
+
     def update_contact(self, name_contact, data, update_inf):
         """Update a contact."""
         archive = open('contacts_file', 'rb+')
@@ -63,30 +73,25 @@ class Phone():
             if i.name == name_contact:
                 if data == 1:
                     i.id = update_inf
-                    break
                 elif data == 2:
                     i.name = update_inf
-                    break
                 elif data == 3:
                     i.lastname = update_inf
-                    break
                 elif data == 4:
                     i.age = update_inf
-                    break
                 elif data == 5:
                     i.number = update_inf
-                    break
                 elif data == 6:
                     i.email = update_inf
-                    break
             else:
                 continue
+
         pickle.dump(self.contacts, archive)  
         archive.close()
         del(archive)
         print()
         print()
-        print('--- C O N T A C T O  A C T U A L I Z A D O ----')
+        print('--- U P D A T E D   C O N T A C T ----')
         self.show_contacts()
 
     def hide_contact(self, hide_name):
@@ -106,7 +111,7 @@ class Phone():
         show = open('contacts_file', 'rb')
         my_contacts = pickle.load(show)
         print()
-        print('---------  Lista de contactos -------')
+        print('---------  contact list -------')
         print()
         for i in my_contacts:
             print(i)
@@ -121,60 +126,76 @@ def show_list_contacts():
 
 def create():
     """Ask for the information to create a contact."""
-    print('Para crear un contacto ingresa los siguientes datos: ')
+    print('To create a contact enter the fallowing data: ')
     document = input('Identificación: ')
     while document.isdigit() == False:
-        print('Entrada no válida, intenta nuevamente')
-        document = input('Identificación: ')
-    name = input('Nombre: ')
-    lastname = input('Apellido: ')
-    age = input('Edad: ')
+        print('Invalid entry, try again')
+        document = input('Document: ')
+    name = input('Name: ')
+    lastname = input('Lastname: ')
+    age = input('Age: ')
+    phone_number = input('Phone number: ')
     try:
-        phone_number = int(input('Número tel: '))
+        int(phone_number)
     except ValueError:
-        print('Entrada invalida, ingrese valor numerico')
+        while not phone_number.isdigit():
+            print('Invalid entry, enter a numeric value')
+            phone_number = input('Phone number: ')
+    res =False
+    while res == False:
+        email = input('Email: ')
+        if '@' in email and email.count('@') == 1 and '.' in email:
+            res = True
+        else:
+            print('Invalid email, try again')
+            res = False
 
-    email = input('email: ')
-    year = int(input('Año actual: '))
-    month = int(input('Mes actual: '))
-    day = int(input('Dia actual: '))
-    creation_date = date(year, month, day)
     my_schedule = Phone()
     new_contact = Contact(document, name, lastname, \
-    age, phone_number, email, creation_date)
+    age, phone_number, email)
     my_schedule.create_contact(new_contact)
 
 def update():
     """Update a contact."""
     my_schedule = Phone()
     print()
-    print('Selecciona un contacto para actualizar: ')
+    print('Select a contact to update: ')
     print()
     my_schedule.show_contacts()
     print()
-    name_contact = input('Escribe el nombre del contacto: ')
-    print("""
-        Ingrese un numero que corresponda con la opcion a actualizar: 
-        1 -> cedula, 2 -> nombre, 3 -> apellido, 4 -> edad, 
-        5 -> número, 6 -> email 
-        """)
-    dato = int(input('Opción: '))
-    info = input('Ingresa la info que deseas actualizar: ')
-    my_schedule.update_contact(name_contact, dato, info)
+    name_contact = input('Write the name of the contact: ')
+    if my_schedule.contact_check(name_contact) == True:
+        print("""
+            Enter a number to update: 
+            1 -> Document, 2 -> Name, 3 -> Lastname, 4 -> Age, 
+            5 -> Cellphone, 6 -> Email 
+            """)
+        dato = int(input('Option: '))
+        if dato < 6:
+            info = input('Enter the new data to update: ')
+            my_schedule.update_contact(name_contact, dato, info)
+        else:
+            print(f"Option {dato}, is invalid, try again")
+            update()
+    else:
+        print(f'{name_contact} does NOT EXIST in the contact list')
 
 def hide():
     """Hide the selected contact."""
     my_schedule = Phone()
     print()
-    print('---- Escoje en la lista el contacto que quieres ocultar ----')
+    print('---- Choose a contact, you want hide  ----')
     print()
     my_schedule.show_contacts()
     print()
-    name_hide  = input('Nombre contacto: ')
-    for i in  my_schedule.hide_contact(name_hide):
-        print(i)
-    print()
-    print('----- C O N T A C T O  O C U L T A D O  ----')
+    name_hide  = input('Contact name: ')
+    if my_schedule.contact_check(name_hide) == True:
+        for i in  my_schedule.hide_contact(name_hide):
+            print(i)
+        print()
+        print('----- H I D D E N   C O N T A C T  ----')
+    else:
+        print(f'{name_hide} does NOT EXIST in the contact list')
 
 
 def principal():
@@ -182,20 +203,20 @@ def principal():
     option = 1
     while option == 1:
         print()
-        print('----------- E L I J E   U N A   O P C I O N   -------')
+        print('----------- C H O O S E   A N   O P T I O N  -------')
         print('''
-        Ingresar: 1 para VER lista de contactos, 
-                  2 para CREAR contacto,
-                  3 para ACTUALIZAR contacto, 
-                  4 para OCULTAR contacto,
-                  5 para SALIR
+        Enter:    1 to VIEW contact list, 
+                  2 to CREATE contact,
+                  3 to UPDATE contact, 
+                  4 to HIDE contact,
+                  5 to EXIT
         ''')
-        option = int(input('Ingresa la opcion: '))
+        option = int(input('Enter the option: '))
         if option == 1:
             try:
                 show_list_contacts()
             except EOFError:
-                print('No contactos en la lista, crea un contacto')
+                print("There aren't contacts in the list, create a contact")
         elif option == 2:
             create()
             principal()
@@ -204,7 +225,7 @@ def principal():
                 update()
                 principal()
             except EOFError:
-                print('No contactos, para actualizar crea uno')
+                print("There aren't contacts, create one to update")
                 create()
                 principal()
         elif option == 4:
@@ -212,14 +233,15 @@ def principal():
                 hide()
                 principal()
             except EOFError:
-                print('No contactos, para ocultar un contacto créalo')
+                print("There aren't contacts, create one to hide")
                 create()
                 principal()
         elif option == 5:
-            print('--------   Saliste del programa   --------')
+            print('--------   Out the program   --------')
             break
+        else:
+            print(f'La opcion {option} Not Exist, enter a valid option')
+            principal()
 principal()
-
-
 
 
