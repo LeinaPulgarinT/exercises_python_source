@@ -14,8 +14,9 @@ class Contact:
         print(f"A new contact has been created with the name {self.name}")
 
     def __str__(self):
-        return f'''\nDocument: {self.id}\nName: {self.name}\nLastname: {self.lastname}
-        Age: {self.age}\nCellphone: {self.number}\nEmail: {self.email}\nCreation date: {self.creation_date}\n'''
+        return f'''\nDocument: {self.id}\nName: {self.name}
+        \nLastname: {self.lastname}\nAge: {self.age}\nCellphone: {self.number}
+        \nEmail: {self.email}\nCreation date: {self.creation_date}\n'''
 class Phone():
 
     contacts = []
@@ -171,7 +172,7 @@ def update():
             5 -> Cellphone, 6 -> Email 
             """)
         dato = int(input('Option: '))
-        if dato < 6:
+        if dato >= 1 and dato <= 6:
             info = input('Enter the new data to update: ')
             my_schedule.update_contact(name_contact, dato, info)
         else:
