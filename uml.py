@@ -1,4 +1,3 @@
-# faltan las relaciones de agregacion
 class Node():
     def __init__(self):
         self.key = None
